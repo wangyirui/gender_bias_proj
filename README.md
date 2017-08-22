@@ -1,1 +1,11 @@
-# gender_bias_proj
+Some claimed that the media was covering Hillary Clinton more negatively in the presidential campaign because she was a woman, while not scrutinizing Donald Trump as closely. However, it is hard to verify or reject the claim since it is the first time that a woman has been the presidential candidate for a major political party. And the events uncovered by certain source casts a shadow on this woman’s election. But one thing we can do is to analyze the language used by men vs. women when covering their candidacy. Thus, our task is building a model to answer this question—Does there exist any differences between male journalists and female journalists when they cover Hillary Clinton? If so, how did they differ?
+
+This project includes 3 types of code, the filter (which used to select articles that only talks about Hillary Clinton), the gender tagger (which used to tag the authors' gender based on their names), and the predictor (which used to predict the authors' gender based on the article content).
+
+In the filter, the most important parameter is the ratio. It controls the number of keywords related to Hillary Clinton to the number of keywords related to all the related people. Thus, giving us an overview understaning of how "pure" the artile is when choosing articles that only talks about Hillary Clinton.
+
+To label the authors ‘gender in our dataset. We use a tool named Demographer (detailed description can be found at the following URL:  https://bitbucket.org/mdredze/demographer/overview), which uses a namelist from the US Social Security Administration and a SVM trained on character ngrams. The score for the prediction is dependent on which predictor is used; if the first name matches a name in the SSA list, it gives the percentage of names that are the majority gender (e.g. 'Sam' is a majority male name, but not 100%) but if the name doesn't match, it uses the SVM which gives a real-valued score where positive is one label and negative is another.
+
+In the predictor, we want to inference author gender from each article. Here we use sklearn TfidfVectorizer to generate the vector. Here, the stopwords set is chosen from http://www.ranks.nl/stopwords default English stopwords list. Then, we use logistic regression classifier to classify the author's gender.
+
+Except these three major part, we project also includes Bing News API code and LIWC code, which are used to get more articles and generate feature vectors, respectively.

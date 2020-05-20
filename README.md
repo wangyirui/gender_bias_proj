@@ -3,7 +3,7 @@ Some claimed that the media was covering Hillary Clinton more negatively in the 
 
 This project includes 3 types of code, the filter (which used to select articles that only talks about Hillary Clinton), the gender tagger (which used to tag the authors' gender based on their names), and the predictor (which used to predict the authors' gender based on the article content).
 
-In the filter, the most important parameter is the ratio. It controls the number of keywords related to Hillary Clinton to the number of keywords related to all the related people. Thus, giving us an overview understaning of how "pure" the artile is when choosing articles that only talks about Hillary Clinton.
+In the filter, the most important parameter is the ratio. It controls the number of keywords related to Hillary Clinton to the number of keywords related to all the related people. Thus, giving us an overview understanding of how "pure" the article is when choosing articles that only talks about Hillary Clinton.
 
 To label the authors ‘gender in our dataset. We use a tool named Demographer (detailed description can be found at the following URL:  https://bitbucket.org/mdredze/demographer/overview), which uses a namelist from the US Social Security Administration and a SVM trained on character ngrams. The score for the prediction is dependent on which predictor is used; if the first name matches a name in the SSA list, it gives the percentage of names that are the majority gender (e.g. 'Sam' is a majority male name, but not 100%) but if the name doesn't match, it uses the SVM which gives a real-valued score where positive is one label and negative is another.
 
